@@ -1,10 +1,10 @@
 baseURL = "https://lordsudo.github.io/"
 languageCode = "en-us"
-title = "Lord Sudo"
+title = "Lord Sudo | Decrypting the labyrinth"
 theme = "mana"
 
 [params]
-  description = "Decrypting the labyrinth."
+  description = "Records kept beyond the threshold"
   disableFingerprinting = true  
   author = "Lord Sudo"
   favicon = "/favicon/logo-transparent/favicon.ico"

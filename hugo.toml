@@ -18,8 +18,8 @@ theme = "mana"
     lightTheme = "catppuccin-frappe"     # Theme for light mode
 
     [params.avatar]
-    url = "https://gist.github.com/user-attachments/assets/a4e4bd14-19a8-42c4-b8db-a5662054d2b4"
-
+    assetPath = "avatar/avatar.png"
+    
 [taxonomies]
   tag = "tags"
 

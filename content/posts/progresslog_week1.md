@@ -3,7 +3,7 @@ title: "Weekly Progress Log - Week 1"
 date: 2026-01-18
 draft: false
 tags: ["Weekly Progress"]
-image: ""
+image: "/thumbnails/week1.png"
 description: "2026 Week 1 Recap"
 ---
 

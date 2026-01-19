@@ -1,0 +1,8 @@
+baseURL = "https://lordsudo.github.io/"
+languageCode = "en-us"
+title = "Lord Sudo"
+theme = "mana"
+
+[params]
+  description = "Decrypting the labyrinth."
+  author = "Lord Sudo"

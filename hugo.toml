@@ -5,4 +5,97 @@ theme = "mana"
 
 [params]
   description = "Decrypting the labyrinth."
+  disableFingerprinting = true  
   author = "Lord Sudo"
+  favicon = "/favicon/logo-transparent/favicon.ico"
+  heroTitleLine1 = "Lord Sudo"
+
+     [params.customCSS]
+    customCSS = ["css/custom.css"]
+
+    [params.codeHighlight]
+    darkTheme = "catppuccin-macchiato"   # Theme for dark mode
+    lightTheme = "catppuccin-frappe"     # Theme for light mode
+
+    [params.avatar]
+    url = "https://gist.github.com/user-attachments/assets/a4e4bd14-19a8-42c4-b8db-a5662054d2b4"
+
+[taxonomies]
+  tag = "tags"
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 10
+
+[[menu.main]]
+  name = "Posts"
+  url = "/posts/"
+  weight = 20
+
+[[menu.main]]
+  name = "Tags"
+  url = "/tags/"
+  weight = 30
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 40
+
+[security]
+  enableInlineShortcodes = true
+
+[security.funcs]
+  getenv = ["^HUGO_"]
+
+
+[pagination]
+  pageSize = 5  # Number of posts per page
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+    [markup.goldmark.parser]
+      # Enable block-level attributes for blockquotes and other block elements
+      # Required for blockquote render hooks (alerts/admonitions)
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+    [markup.tableOfContents]        
+      startLevel = 1
+      endLevel = 6
+      ordered = false
+    [markup.highlight]
+      codeFences = true
+      guessSyntax = true
+      noClasses = false
+      style = "catppuccin-macchiato"  # Default style (will be overridden by theme-aware CSS)
+
+# Social media links
+[params.social]
+    github = "https://github.com/yourusername"
+    linkedin = "https://www.linkedin.com"
+    email = "mailto:info@lordsudo.com"
+    twitter  = "https://twitter.com/l0rd5ud0"
+    discord  = "https://discord.com/l0rd5ud0"
+
+
+# Output formats for search index
+[outputs]
+  home = ["HTML", "JSON"]
+
+# Sitemap configuration for SEO
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+# Admonitions Configuration
+[params.admonitions]
+    # Choose between "emoji" and "favicon" (image)
+    alertStyle = "favicon" 
+
+
+

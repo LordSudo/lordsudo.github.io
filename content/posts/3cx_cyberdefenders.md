@@ -68,9 +68,10 @@ As the investigation unfolded, Mandiant's report would go on to highlight that t
 
 For more detailed information, you can read the full Mandiant report here: [Mandiant's Report on 3CX Supply Chain Compromise](https://cloud.google.com/blog/topics/threat-intelligence/3cx-software-supply-chain-compromise).
 
-![AttackFlowChart](https://gist.github.com/user-attachments/assets/45307f91-9236-4301-9072-c1c91f92866b)
-
-
+<img
+  src="https://gist.github.com/user-attachments/assets/45307f91-9236-4301-9072-c1c91f92866b"
+  alt="AttackFlowChart"
+  style="max-width:800px; width:100%;">
 
 
 ## **The Connection to Trading Technologies**
@@ -173,9 +174,11 @@ These files are key signatures and can be used to trace the activity in affected
 
 Below is the general flow of the attack from initial compromise to data exfiltration.
 
-![Infection Chain](https://gist.github.com/user-attachments/assets/a6dad5b1-6cca-4388-a67f-82c8508f01fc)
-
-
+<img
+  src="https://gist.github.com/user-attachments/assets/a6dad5b1-6cca-4388-a67f-82c8508f01fc"
+  alt="Infection Chain"
+  style="max-width:800px; width:100%;">
+  
 
 #### **Lateral Movement**
 
@@ -247,9 +250,18 @@ For more details, refer to the [Zscaler Blog](https://www.zscaler.com/blogs/secu
 I uploaded the **3CXDesktopApp installer MSI** that was provided as part of the challenge files to **[VirusTotal](https://www.virustotal.com/gui/file/59e1edf4d82fae4978e97512b0331b7eb21dd4b838b850ba46794d9c7a2c0983/relations)** and conducted a thorough analysis. Here's a brief snippet of the  results:
 
 1. **History**: 
-![VTHistory](https://gist.github.com/user-attachments/assets/485bf6ea-36bd-4814-9485-989d44ffd060)
+
+<img
+  src="https://gist.github.com/user-attachments/assets/485bf6ea-36bd-4814-9485-989d44ffd060"
+  alt="VT History"
+  style="max-width:800px; width:100%;">
+
 2. **Basic Info**: 
-![VTBasicInfo](https://gist.github.com/user-attachments/assets/9e8f3292-f2ca-405a-a9dd-a49c852ce131)
+
+<img
+  src="https://gist.github.com/user-attachments/assets/9e8f3292-f2ca-405a-a9dd-a49c852ce131"
+  alt="VT Basic Info"
+  style="max-width:800px; width:100%;">
 
 Additionally, the **Community tab** led me to a report by **FileScan.io**, which can be accessed [here](https://www.filescan.io/reports/59e1edf4d82fae4978e97512b0331b7eb21dd4b838b850ba46794d9c7a2c0983/9ff36d46-d90b-40b6-a708-ba9e2ddcbdec/overview).
 

@@ -3,6 +3,8 @@ languageCode = "en-us"
 title = "Lord Sudo | Decrypting the labyrinth"
 theme = "mana"
 
+googleAnalytics = "G-PKHW8DHTY4"
+
 [params]
   description = "Records kept beyond the threshold"
   disableFingerprinting = true  
@@ -97,5 +99,8 @@ theme = "mana"
     # Choose between "emoji" and "favicon" (image)
     alertStyle = "favicon" 
 
+[privacy.googleAnalytics]
+  anonymizeIP = true
+  respectDoNotTrack = true
 
 

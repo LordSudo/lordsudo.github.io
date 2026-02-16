@@ -32,6 +32,7 @@ Welcome to the other side.
 
 
 ### 2026
+- Challenge Author for 0xfun CTF 2026
 - Challenge Author for CTFZone Platform
 
 ### 2025

@@ -1,0 +1,105 @@
+/* ── Tables ── */
+.post-content table,
+article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.post-content table thead,
+article table thead {
+  border-bottom: 2px solid #3b82f6;
+}
+
+.post-content table th,
+article table th {
+  text-align: left;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  white-space: nowrap;
+}
+
+.post-content table td,
+article table td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.post-content table tr:hover,
+article table tr:hover {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* ── Code Block Overrides ── */
+.code-block-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.code-block-content {
+  padding: 0.75rem 0;
+}
+
+.code-block-content pre {
+  padding: 1.25rem 1.25rem !important;
+  margin: 0 !important;
+}
+
+.code-block-copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.35rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  transition: background 0.2s, border-color 0.2s;
+  z-index: 10;
+}
+
+.code-block-copy:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.code-block-copy svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: #94a3b8;
+  transition: stroke 0.2s;
+}
+
+.code-block-copy:hover svg {
+  stroke: #3b82f6;
+}
+
+.code-block-copy.copied svg {
+  stroke: #22c55e;
+}
+
+.code-block-copy .copy-text,
+.code-block-copy .copied-text {
+  display: none !important;
+}
+
+/* ── Inline Code Highlight ── */
+.post-content-main code:not(pre code) {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.875em;
+}

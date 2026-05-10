@@ -103,7 +103,9 @@ The community I used to watch from the sidelines is now one I actively help buil
 
 That transformation didn't happen overnight. It happened through showing up. Repeatedly. Over months and years. Learning in public. Contributing when I could. Asking questions when I couldn't. Staying engaged even when I felt like I had nothing valuable to add.
 
-HTB Kenya gave me a space to grow. This event was a reminder of how far that growth has taken me - and how much further it can still go.
+HTB Kenya gave me a space to grow. 
+
+This event was a reminder of how far that growth has taken me - and how much further it can still go.
 
 
 ## Gratitude

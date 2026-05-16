@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="tools-page">
+  <div class="tools-header">
+    <h1 class="tools-title">{{ .Title }}</h1>
+    <p class="tools-description">{{ .Description }}</p>
+  </div>
+
+  <div class="tools-grid">
+    {{ range site.Data.tools }}
+    <a class="tool-card" href="{{ .url }}" target="_blank" rel="noopener noreferrer">
+      <div class="tool-card-inner">
+        <div class="tool-card-top">
+          <span class="tool-date">{{ .date }}</span>
+          <span class="tool-arrow">↗</span>
+        </div>
+        <h2 class="tool-name">{{ .title }}</h2>
+        <p class="tool-desc">{{ .description }}</p>
+        <div class="tool-tags">
+          {{ range .tags }}
+          <span class="tool-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

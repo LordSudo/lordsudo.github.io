@@ -103,3 +103,112 @@ article table tr:hover {
   border-radius: 4px;
   font-size: 0.875em;
 }
+/* ── Arsenal Page ─────────────────────────────────────────── */
+
+.tools-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+.tools-header {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border-color, #e2e8f0);
+  padding-bottom: 1.5rem;
+}
+
+.tools-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.tools-description {
+  color: var(--text-muted, #6b7280);
+  font-size: 0.95rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.tool-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 10px;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-card:hover {
+  border-color: var(--primary-color, #6366f1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  color: inherit;
+}
+
+.tool-card-inner {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  height: 100%;
+}
+
+.tool-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tool-date {
+  font-size: 0.75rem;
+  color: var(--text-muted, #9ca3af);
+  font-family: monospace;
+}
+
+.tool-arrow {
+  font-size: 1rem;
+  color: var(--text-muted, #9ca3af);
+  transition: color 0.2s ease;
+}
+
+.tool-card:hover .tool-arrow {
+  color: var(--primary-color, #6366f1);
+}
+
+.tool-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.tool-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted, #6b7280);
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+.tool-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.tool-tag {
+  font-size: 0.7rem;
+  font-family: monospace;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--code-bg, #f1f5f9);
+  color: var(--text-muted, #6b7280);
+  border: 1px solid var(--border-color, #e2e8f0);
+}

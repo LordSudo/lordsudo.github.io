@@ -206,9 +206,9 @@ article table tr:hover {
 .tool-tag {
   font-size: 0.7rem;
   font-family: monospace;
-  padding: 2px 8px;
+  padding: 2px 10px;
   border-radius: 4px;
-  background: var(--code-bg, #f1f5f9);
-  color: var(--text-muted, #6b7280);
-  border: 1px solid var(--border-color, #e2e8f0);
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border: none;
 }

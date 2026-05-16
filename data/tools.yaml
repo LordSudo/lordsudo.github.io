@@ -3,3 +3,10 @@
   url: "/arsenal/corporate_osint_mindmap.html"
   date: "2026-05-16"
   tags: ["osint", "recon", "mindmap"]
+
+
+- title: "Individual OSINT Recon MindMap"
+  description: "Interactive individual attack surface map covering 13 intelligence domains and 35 nodes."
+  url: "/arsenal/individual_osint_mindmap.html"
+  date: "2025-03-11"
+  tags: ["osint", "recon", "mindmap"]

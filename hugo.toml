@@ -89,12 +89,11 @@ googleAnalytics = "G-PKHW8DHTY4"
 
 # Social media links
 [params.social]
-    # github   = ""   # add your profile URL to show the icon
-    # linkedin = ""   # add your profile URL to show the icon
-    email = "mailto:info@lordsudo.com"
+    github   = "https://github.com/LordSudo"   
+    linkedin = "https://www.linkedin.com/"  
     x        = "https://x.com/l0rd5ud0"
     discord  = "https://discord.com/l0rd5ud0"
-
+    email = "mailto:info@lordsudo.com"
 
 # Output formats for search index
 [outputs]

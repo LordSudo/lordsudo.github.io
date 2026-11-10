@@ -110,7 +110,8 @@
     sel = 0;
     results.innerHTML = hits.length
       ? hits.slice(0, 30).map(function (x, i) {
-          var inMeta = words.length && words.every(function (w) { return (x.lt + " " + x.lx).indexOf(w) >= 0; });
+          /* Skip the snippet only when every word is already visible in the result: its title or tags. */
+          var inMeta = words.length && words.every(function (w) { return (x.lt + " " + x.lg).indexOf(w) >= 0; });
           var snip = words.length && !inMeta ? snippet(x, words) : null;
           return '<li><a href="' + esc(x.u) + '"' + (i === 0 ? ' class="sel"' : "") + '><span class="k">' + esc(x.k) + '</span><span class="t">' + hl(x.t, words) + "</span>" +
             (snip ? '<span class="s">' + snip + "</span>" : "") +

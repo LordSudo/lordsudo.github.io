@@ -1,9 +1,21 @@
 # #chronicles on the About page. Newest year first.
 # role: author | "author, trainer" | winner | runner-up   (winner and runner-up get the amber marker)
 - year: 2026
-  items:
-    - { role: author, event: "0xfun CTF 2026" }
-    - { role: author, event: "CTFZone Platform" }
+  items: 
+    - { role: "author, organiser", event: "31 nights of r00t CTF" } 
+    - { role: "author, organiser", event: "r00t rush CTF" }
+    - { role: "author, trainer", event: "UCC Cyber Stars Uganda" } 
+    - { role: author, event: "CenteHack CTF" }
+    - { role: author, event: "IPT 2025/26 CTF FINAL" }
+    - { role: "author, organiser", event: "East Africa Intervarsity Quals and Finals" }  
+    - { role: author, event: "AFRICC Quals CTF" }
+    - { role: author, event: "BIC DEFCON 34 CTF" }  
+    - { role: author, event: "CyBlack UK CTF" }
+    - { role: author, event: "Dirtbags & Flags CTF" } 
+    - { role: author, event: "Cyber Premier League, Tanzania" }
+    - { role: author, event: "ECOWAS CTF" }
+    - { role: author, event: "0xfun CTF" }
+    - { role: author, event: "CTFZone Labs" }
 
 - year: 2025
   items:

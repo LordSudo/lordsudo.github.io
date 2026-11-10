@@ -1,0 +1,55 @@
+{{ define "main" }}
+<section class="wrap hero">
+  <div>
+    <div class="hero-title">
+      <p class="label">{{ site.Params.heroEyebrow | default "Decrypting the labyrinth" }}</p>
+      <h1>Lord<span>Sudo</span></h1>
+    </div>
+    {{- with site.Params.heroIntro }}
+    {{- /* heroIntro: a string, or a list where each item starts on its own line */}}
+    <p class="intro">{{ if reflect.IsSlice . }}{{ range $i, $l := . }}{{ if $i }}<br>{{ end }}{{ $l | markdownify }}{{ end }}{{ else }}{{ . | markdownify }}{{ end }}</p>
+    {{- end }}
+    {{ partial "socials.html" . }}
+  </div>
+  <figure class="maze-card">
+    <canvas id="maze" role="img" tabindex="-1" aria-label="A labyrinth that draws itself and is then solved from entrance to exit"></canvas>
+    <figcaption class="maze-foot">
+      <span id="maze-status">labyrinth <b>#—</b></span>
+      <span class="maze-actions">
+        <button class="maze-btn play" type="button" id="maze-play" aria-pressed="false">Play it</button>
+        <button class="maze-btn" type="button" id="maze-new">New labyrinth</button>
+      </span>
+    </figcaption>
+  </figure>
+</section>
+
+<div class="wrap">
+  {{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+  <div class="sec-head"><h2 id="latest-h">Latest entries</h2><a href="{{ "posts/" | relURL }}">All entries →</a></div>
+
+  {{- with index $posts 0 }}
+  {{- $img := partial "thumb.html" (dict "p" . "w" 1100) }}
+  <a class="lead" href="{{ .RelPermalink }}">
+    <span class="img">{{ with $img }}<img src="{{ . }}" alt="" decoding="async" onerror="this.remove()">{{ end }}</span>
+    <span>
+      <span class="label">No. {{ printf "%03d" (partial "entry-number.html" .) }} · {{ .Date.Format "Jan 02, 2006" }}</span>
+      <h3>{{ .Title }}</h3>
+      {{- with .Description }}<p>{{ . }}</p>{{ end }}
+      {{ partial "meta.html" (dict "p" . "links" false) }}
+    </span>
+  </a>
+  {{- end }}
+
+  <ol class="entries" aria-labelledby="latest-h">
+    {{- range after 1 (first 5 $posts) }}
+    {{ partial "entry-row.html" . }}
+    {{- end }}
+  </ol>
+  <div class="pager"><span>The five most recent entries</span><a href="{{ "posts/" | relURL }}">Open the ledger →</a></div>
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+{{- $maze := resources.Get "js/maze.js" | minify | fingerprint }}
+<script src="{{ $maze.RelPermalink }}" integrity="{{ $maze.Data.Integrity }}" defer></script>
+{{ end }}

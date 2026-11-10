@@ -5,6 +5,8 @@ draft: false
 tags: ["Identity Security"]
 image: "/thumbnails/identity1.png"
 description: "Every login, every API call, every AI agent moving money routes through one question. Here's why the answer is the whole game."
+series: "Identity Security"
+part: 1
 ---
 
 Your keycard stops working the day you check out of the hotel.

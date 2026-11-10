@@ -1,0 +1,15 @@
+{{- /* Code blocks. Options on the fence line:
+         ```python {title="exploit.py"}          filename or command shown in the bar
+         ```bash {hl_lines="3-5 8"}              highlight the lines that matter
+         ```text {linenos=false}                 turn line numbers off
+         ```text {collapse=false}                never fold long output
+       Line numbers switch on by themselves past 10 lines; output past 25 lines is folded (see ledger.js). */ -}}
+{{- $lines := len (split (strings.TrimRight "\n" .Inner) "\n") -}}
+{{- $opts := dict -}}
+{{- if and (gt $lines 10) (not (isset .Options "linenos")) -}}{{- $opts = dict "linenos" "inline" -}}{{- end -}}
+{{- $lang := .Type | default "text" -}}
+{{- $r := transform.HighlightCodeBlock . $opts -}}
+<div class="codeblock" data-lang="{{ $lang }}" data-lines="{{ $lines }}"{{ with .Attributes.title }} data-title="{{ . }}"{{ end }}{{ if eq (string .Attributes.collapse) "false" }} data-nofold{{ end }}>
+{{- $r.Wrapped -}}
+</div>
+{{- /* */ -}}

@@ -1,0 +1,26 @@
+{{- /* Numbered pagination: ← Newer  1 2 [3] 4 … 9  Older →
+       Shows the first and last page, plus two either side of the current one. */ -}}
+{{- $pag := . -}}
+{{- if gt $pag.TotalPages 1 }}
+<nav class="pager pager-num" aria-label="Pagination">
+  {{- if $pag.HasPrev }}<a class="pg-step" href="{{ $pag.Prev.URL }}">← Newer</a>{{ else }}<span class="pg-step off" aria-hidden="true">← Newer</span>{{ end }}
+  <ol class="pg-list">
+    {{- $cur := $pag.PageNumber }}
+    {{- $last := $pag.TotalPages }}
+    {{- $gap := false }}
+    {{- range $pag.Pagers }}
+      {{- $n := .PageNumber }}
+      {{- if or (eq $n 1) (eq $n $last) (and (ge $n (sub $cur 2)) (le $n (add $cur 2))) }}
+        {{- $gap = false }}
+        {{- if eq $n $cur }}<li><span class="pg-n here" aria-current="page">{{ $n }}</span></li>
+        {{- else }}<li><a class="pg-n" href="{{ .URL }}" aria-label="Page {{ $n }}">{{ $n }}</a></li>{{ end }}
+      {{- else if not $gap }}
+        {{- $gap = true }}<li><span class="pg-gap" aria-hidden="true">…</span></li>
+      {{- end }}
+    {{- end }}
+  </ol>
+  {{- if $pag.HasNext }}<a class="pg-step" href="{{ $pag.Next.URL }}">Older →</a>{{ else }}<span class="pg-step off" aria-hidden="true">Older →</span>{{ end }}
+</nav>
+{{- else }}
+<div class="pager"><span></span></div>
+{{- end }}

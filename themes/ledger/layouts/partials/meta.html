@@ -1,0 +1,14 @@
+{{- /* Tags on the left, read time and date on the right. Call with (dict "p" $page "links" true|false).
+       Rows are links themselves, so tags inside a row are plain spans. */ -}}
+{{- $p := .p -}}
+<span class="meta">
+  {{- with $p.Params.tags }}
+  <span class="meta-tags">
+    {{- range . -}}
+      {{- if $.links }}<a class="tag {{ partial "tag-colour.html" . }}" href="{{ (printf "tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>
+      {{- else }}<span class="tag {{ partial "tag-colour.html" . }}">{{ . }}</span>{{ end -}}
+    {{- end }}
+  </span>
+  {{- end }}
+  <span class="meta-when"><span>{{ $p.ReadingTime }} min read</span><span class="sep">/</span><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "Jan 02, 2006" }}</time></span>
+</span>

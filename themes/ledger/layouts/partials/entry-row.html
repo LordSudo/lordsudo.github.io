@@ -1,0 +1,22 @@
+{{- $isLog := eq .Section "log" -}}
+{{- $img := partial "thumb.html" (dict "p" . "w" 480) -}}
+<li>
+  <a class="entry" href="{{ .RelPermalink }}">
+    <span class="no">
+      {{- if $isLog }}Week<b>{{ .Params.week }}</b>
+      {{- else if eq .Section "posts" }}No.<b>{{ printf "%03d" (partial "entry-number.html" .) }}</b>
+      {{- else }}&nbsp;{{ end -}}
+    </span>
+    <span class="thumb{{ if not $img }} week{{ end }}">
+      {{- with $img }}<img src="{{ . }}" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+      {{- else }}<span>{{ if $isLog }}W{{ $.Params.week }}{{ else }}§{{ end }}</span>{{ end -}}
+    </span>
+    <span class="e-main">
+      {{- $s := partial "series-info.html" . }}
+      {{- if and $s.name (gt $s.total 1) }}<span class="series-chip">Part {{ $s.at }} · {{ $s.name }}</span>{{ end }}
+      <span class="e-title">{{ .Title }}</span>
+      {{- with partial "dek.html" . }}<span class="e-dek">{{ . }}</span>{{ end }}
+      {{ partial "meta.html" (dict "p" . "links" false) }}
+    </span>
+  </a>
+</li>

@@ -1,0 +1,50 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-head">
+    <div>
+      <p class="label">Operator</p>
+      <h1>{{ .Title }}</h1>
+    </div>
+    {{- with .Params.crew }}<div class="count"><b>{{ . }}</b>operative</div>{{ end }}
+  </div>
+
+  <section class="about-sec" aria-labelledby="whoami">
+    <h2 id="whoami">#whoami</h2>
+    <div class="whoami">{{ .Content }}</div>
+  </section>
+
+  {{- with site.Data.certs }}
+  <section class="about-sec" aria-labelledby="certs">
+    <h2 id="certs">#certs</h2>
+    <ul class="cert-list">
+      {{- range . }}
+      <li class="cert"><b>{{ .short }}</b><span>{{ .name }}</span><em>{{ .issuer }}</em></li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+
+  {{- with site.Data.chronicles }}
+  <section class="about-sec" aria-labelledby="chronicles">
+    <h2 id="chronicles">#chronicles<small>A living record, updated as milestones are reached</small></h2>
+    <div class="timeline">
+      {{- range $i, $y := . }}
+      <details class="t-year"{{ if eq $i 0 }} open{{ end }}>
+        <summary>
+          <h3>{{ $y.year }}</h3>
+          <span class="t-count">{{ len $y.items }} {{ cond (eq (len $y.items) 1) "entry" "entries" }}</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <ul>
+          {{- range $y.items }}
+          {{- $win := in (slice "winner" "runner-up") .role }}
+          <li class="{{ if $win }}win{{ else }}author{{ end }}"><span class="role">{{ .role }}</span><span>{{ .event }}</span></li>
+          {{- end }}
+        </ul>
+      </details>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+</div>
+{{ end }}

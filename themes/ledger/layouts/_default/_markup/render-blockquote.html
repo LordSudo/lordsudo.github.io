@@ -1,0 +1,28 @@
+{{- /* Callouts use GitHub's alert syntax:
+         > [!NOTE]  > [!TIP]  > [!IMPORTANT]  > [!WARNING]  > [!CAUTION]
+       Optional custom title:  > [!TIP] Before you start
+       Flag reveal (blurred until clicked):
+         > [!FLAG]
+         > `sudo{example_flag}`
+       Ordinary blockquotes render as before. */ -}}
+{{- if eq .Type "alert" -}}
+  {{- $type := lower .AlertType -}}
+  {{- $titles := dict "note" "Note" "tip" "Tip" "important" "Important" "warning" "Warning" "caution" "Caution" "flag" "Flag" -}}
+  {{- $label := .AlertTitle | default (index $titles $type) | default (title $type) -}}
+  {{- if eq $type "flag" -}}
+<div class="callout callout-flag" data-flag>
+  <p class="callout-title"><span class="callout-icon" aria-hidden="true">⚑</span>{{ $label }}</p>
+  <div class="flag-body">{{ .Text }}</div>
+  <button type="button" class="flag-reveal" aria-expanded="false">Click to reveal</button>
+</div>
+  {{- else -}}
+<div class="callout callout-{{ $type }}" role="note">
+  <p class="callout-title"><span class="callout-icon" aria-hidden="true">{{ index (dict "note" "i" "tip" "✓" "important" "!" "warning" "!" "caution" "✕") $type | default "›" }}</span>{{ $label }}</p>
+  {{ .Text }}
+</div>
+  {{- end -}}
+{{- else -}}
+<blockquote{{ with .Attributes.class }} class="{{ . }}"{{ end }}>
+  {{ .Text }}
+</blockquote>
+{{- end -}}

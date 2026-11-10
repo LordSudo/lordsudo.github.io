@@ -1,0 +1,8 @@
+{{- /* One-line description for lists.
+       Logs all say "2026 Week NN Recap", so for logs use the paragraph after "Week starting:" instead. */ -}}
+{{- $out := .Description -}}
+{{- if eq .Section "log" -}}
+  {{- $ps := findRE `<p>[\s\S]*?</p>` .Content 2 -}}
+  {{- if ge (len $ps) 2 -}}{{- $out = index $ps 1 | plainify | htmlUnescape | truncate 180 -}}{{- end -}}
+{{- end -}}
+{{- return $out -}}

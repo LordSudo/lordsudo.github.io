@@ -1,0 +1,38 @@
+# #chronicles on the About page. Newest year first.
+# role: author | "author, trainer" | winner | runner-up   (winner and runner-up get the amber marker)
+- year: 2026
+  items:
+    - { role: author, event: "0xfun CTF 2026" }
+    - { role: author, event: "CTFZone Platform" }
+
+- year: 2025
+  items:
+    - { role: winner, event: "AfricaCERT FIRST Cyber Drill" }
+    - { role: winner, event: "Cyberlympics by ACDF" }
+    - { role: author, event: "Nahamcon Winter CTF" }
+    - { role: author, event: "P3rf3ctr00t CTF" }
+    - { role: "author, trainer", event: "CyberStars Competition Uganda" }
+    - { role: author, event: "Digital Safe Limited, Zambia CTF" }
+    - { role: author, event: "CTFRoom Hackfridays" }
+    - { role: author, event: "BitSiege CTF" }
+    - { role: author, event: "CyberQuest CTF" }
+    - { role: author, event: "Dewald Roode Hackathon" }
+    - { role: author, event: "Black Awareness OSINT CTF" }
+
+- year: 2024
+  items:
+    - { role: runner-up, event: "BIC DEFCON CTF" }
+    - { role: author, event: "P3rf3ctr00t CTF" }
+    - { role: author, event: "Bsides Nairobi CTF" }
+    - { role: author, event: "CyberPro CTF" }
+    - { role: author, event: "Secure Tech East Africa CTF" }
+    - { role: author, event: "UrchinSec Aware CTF" }
+    - { role: author, event: "East Africa Intervarsity CTF" }
+
+- year: 2023
+  items:
+    - { role: winner, event: "Bsides Nairobi CTF" }
+
+- year: 2022
+  items:
+    - { role: winner, event: "CyberStars Uganda Competition" }

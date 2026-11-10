@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-head">
+    <div>
+      <p class="label">Index</p>
+      <h1>{{ .Title }}</h1>
+      <p>Every subject in the ledger, by how often it comes up.</p>
+    </div>
+    <div class="count"><b>{{ len .Data.Terms }}</b>tags</div>
+  </div>
+  <ul class="tag-table">
+    {{- range .Data.Terms.ByCount }}
+    <li class="{{ partial "tag-colour.html" .Page.Title }}"><a class="tag-row" href="{{ .Page.RelPermalink }}"><span class="n">{{ .Page.Title }}</span><span class="c">{{ .Count }} {{ cond (eq .Count 1) "entry" "entries" }}</span></a></li>
+    {{- end }}
+  </ul>
+</div>
+{{ end }}

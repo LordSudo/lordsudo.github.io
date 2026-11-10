@@ -1,0 +1,2 @@
+{{- /* Headings get a hover link; clicking it copies the URL to that section (ledger.js). */ -}}
+<h{{ .Level }} id="{{ .Anchor }}"{{ with .Attributes.class }} class="{{ . }}"{{ end }}>{{ .Text }}{{ if and (ge .Level 2) (le .Level 4) }}<a class="anchor" href="#{{ .Anchor }}" aria-label="Copy link to this section"></a>{{ end }}</h{{ .Level }}>

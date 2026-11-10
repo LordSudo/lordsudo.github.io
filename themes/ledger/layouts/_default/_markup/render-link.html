@@ -1,0 +1,4 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $external := and $u.Host (not (in (slice "lordsudo.github.io" "blog.lordsudo.com") $u.Host)) -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- /* no trailing newline */ -}}

@@ -1,0 +1,27 @@
+{{- /* Returns a page's image URL, resized and converted at build time.
+       Call with (dict "p" $page "w" 480 "f" "webp"). Defaults: w=640, f=webp.
+       Images live in assets/thumbnails/; front matter keeps `image: /thumbnails/x.png` (a leading slash is optional).
+       If the file isn't in assets/ (or is a full URL), the path is returned unchanged. */ -}}
+{{- $p := .p -}}
+{{- $w := .w | default 640 -}}
+{{- $f := .f | default "webp" -}}
+{{- $out := "" -}}
+{{- with $p.Params.image -}}
+  {{- if or (hasPrefix . "http://") (hasPrefix . "https://") -}}
+    {{- $out = . -}}
+  {{- else -}}
+    {{- $path := strings.TrimPrefix "/" . -}}
+    {{- with resources.Get $path -}}
+      {{- $img := . -}}
+      {{- if gt $img.Width $w -}}
+        {{- $img = $img.Resize (printf "%dx %s q78" $w $f) -}}
+      {{- else -}}
+        {{- $img = $img.Process (printf "%s q78" $f) -}}
+      {{- end -}}
+      {{- $out = $img.RelPermalink -}}
+    {{- else -}}
+      {{- $out = $path | relURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

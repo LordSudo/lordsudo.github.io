@@ -1,0 +1,60 @@
+{{- /* Generated social card (1200x630) for pages without their own thumbnail: tags, the tag index, home,
+       Entries, Log, Arsenal, About, and any post that has no image. Built at render time from
+       assets/cards/card-t{0,1,2}.png (made by make-base.py) with the page's text drawn on top.
+       Returns the card's permalink. */ -}}
+{{- $p := . -}}
+{{- $label := "" -}}{{- $title := $p.Title -}}{{- $sub := "" -}}{{- $tone := "t0" -}}
+{{- $entries := where site.RegularPages "Section" "posts" -}}
+{{- $logs := where site.RegularPages "Section" "log" -}}
+{{- if $p.IsHome -}}
+  {{- $label = "Lord Sudo" -}}{{- $title = site.Params.tagline | default site.Title -}}
+  {{- $sub = printf "%d entries · %d weeks logged" (len $entries) (len $logs) -}}
+{{- else if eq $p.Kind "term" -}}
+  {{- $label = "Tag" -}}{{- $tone = partial "tag-colour.html" $p.Title -}}
+  {{- $n := len $p.RegularPages -}}{{- $sub = printf "%d %s" $n (cond (eq $n 1) "entry" "entries") -}}
+{{- else if eq $p.Kind "taxonomy" -}}
+  {{- $label = "Index" -}}{{- $sub = printf "%d tags" (len $p.Data.Terms) -}}
+{{- else if eq $p.Kind "section" -}}
+  {{- $label = "Section" -}}
+  {{- if eq $p.Section "log" -}}{{- $tone = "t2" -}}{{- $sub = printf "%d weeks logged" (len $logs) -}}
+  {{- else if eq $p.Section "posts" -}}{{- $title = "Entries" -}}{{- $sub = printf "%d entries" (len $entries) -}}
+  {{- else if eq $p.Section "arsenal" -}}{{- $tone = "t1" -}}{{- $sub = printf "%d tools" (len site.Data.tools) -}}
+  {{- else -}}{{- $sub = $p.Description -}}{{- end -}}
+{{- else if eq $p.Section "posts" -}}
+  {{- $label = printf "Entry No. %03d" (partial "entry-number.html" $p) -}}{{- $sub = $p.Date.Format "Jan 02, 2006" -}}
+{{- else if eq $p.Section "log" -}}
+  {{- $label = printf "Log · Week %v" $p.Params.week -}}{{- $tone = "t2" -}}{{- $sub = $p.Date.Format "Jan 02, 2006" -}}
+{{- else -}}
+  {{- $label = "Lord Sudo" -}}{{- $sub = $p.Description | default site.Params.tagline -}}
+{{- end -}}
+{{- $ink := index (dict "t0" "#b48cff" "t1" "#ffb547" "t2" "#3ddc97") $tone -}}
+{{- $title = upper $title -}}
+{{- /* Wrap the title to the space left of the labyrinth (about 560px): try the largest size whose
+       greedy word-wrap fits the lines that size allows; widths use ~0.44em per uppercase glyph. */ -}}
+{{- $size := 76 -}}{{- $lines := slice $title -}}
+{{- range $try := slice (slice 168 7 1) (slice 132 9 2) (slice 100 12 2) (slice 76 16 3) -}}
+  {{- if eq $size 76 -}}
+    {{- $max := index $try 1 -}}{{- $cur := "" -}}{{- $acc := slice -}}
+    {{- range split $title " " -}}
+      {{- if eq $cur "" -}}{{- $cur = . -}}
+      {{- else if le (add (len $cur) 1 (len .)) $max -}}{{- $cur = printf "%s %s" $cur . -}}
+      {{- else -}}{{- $acc = $acc | append $cur -}}{{- $cur = . -}}{{- end -}}
+    {{- end -}}
+    {{- $acc = $acc | append $cur -}}
+    {{- if or (le (len $acc) (index $try 2)) (eq (index $try 0) 76) -}}{{- $size = index $try 0 -}}{{- $lines = $acc -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $lines = first 3 $lines -}}
+{{- $display := resources.Get "cards/BigShouldersDisplay-Black.ttf" -}}
+{{- $mono := resources.Get "cards/IBMPlexMono-Medium.ttf" -}}
+{{- $out := "" -}}
+{{- with resources.Get (printf "cards/card-%s.png" $tone) -}}
+  {{- $f := slice (images.Text (upper $label) (dict "font" $mono "size" 24 "color" $ink "x" 80 "y" 82)) -}}
+  {{- range $i, $line := $lines -}}
+    {{- $f = $f | append (images.Text $line (dict "font" $display "size" $size "color" "#efeaf5" "x" 80 "y" (add 128 (mul $i (int (mul $size 0.98)))))) -}}
+  {{- end -}}
+  {{- with $sub -}}{{- $f = $f | append (images.Text . (dict "font" $mono "size" 28 "color" "#958ca5" "x" 80 "y" 420)) -}}{{- end -}}
+  {{- $img := . | images.Filter $f -}}
+  {{- $out = $img.Permalink -}}
+{{- end -}}
+{{- return $out -}}

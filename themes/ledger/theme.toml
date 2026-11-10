@@ -1,0 +1,7 @@
+name = "ledger"
+description = "The LordSudo Ledger: numbered entries, a weekly log, and a labyrinth that solves itself."
+min_version = "0.139.0"
+license = "Proprietary"
+
+[author]
+  name = "LordSudo"

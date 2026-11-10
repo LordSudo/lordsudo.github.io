@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{- $isTerm := eq .Kind "term" }}
+{{- $isPosts := eq .Section "posts" }}
+<div class="wrap">
+  <div class="page-head">
+    <div>
+      <p class="label">{{ if $isTerm }}Tagged{{ else }}Index{{ end }}</p>
+      <h1>{{ if $isPosts }}Entries{{ else }}{{ .Title }}{{ end }}</h1>
+      {{- if not $isPosts }}{{ with .Description }}<p>{{ . }}</p>{{ end }}{{ end }}
+    </div>
+    <div class="count"><b>{{ len .RegularPages }}</b>{{ if $isTerm }}{{ cond (eq (len .RegularPages) 1) "entry" "entries" }}{{ else }}entries filed{{ end }}</div>
+  </div>
+  {{- $pag := .Paginate .RegularPages.ByDate.Reverse }}
+  <ol class="entries">
+    {{- range $pag.Pages }}
+    {{ partial "entry-row.html" . }}
+    {{- end }}
+  </ol>
+  {{ partial "pager.html" $pag }}
+</div>
+{{ end }}

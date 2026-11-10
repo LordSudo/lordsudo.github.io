@@ -21,6 +21,30 @@
   });
   syncToggle();
 
+  /* ---------- Phone header: reserve its height, fold the nav row while scrolling down ---------- */
+  var head = document.querySelector(".site-header"), phone = window.matchMedia("(max-width: 760px)");
+  if (head) {
+    var lastY = window.scrollY, ticking = false;
+    var measure = function () {
+      if (!phone.matches) { root.style.removeProperty("--head-h"); head.classList.remove("tuck"); return; }
+      if (!head.classList.contains("tuck")) root.style.setProperty("--head-h", head.offsetHeight + "px");
+    };
+    var onScrollHead = function () {
+      ticking = false;
+      if (!phone.matches) return;
+      var y = window.scrollY, dy = y - lastY;
+      if (y < 80) head.classList.remove("tuck");
+      else if (dy > 6) head.classList.add("tuck");
+      else if (dy < -6) head.classList.remove("tuck");
+      if (Math.abs(dy) > 6 || y < 80) lastY = y;
+    };
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScrollHead); } }, { passive: true });
+    window.addEventListener("resize", measure);
+    head.addEventListener("focusin", function () { head.classList.remove("tuck"); });
+    measure();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+  }
+
   /* ---------- Search palette ---------- */
   var pal = $("palette"), q = $("q"), results = $("results");
   var index = null, sel = 0;

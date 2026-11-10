@@ -75,10 +75,18 @@ p.label, h2.label, h3.label { margin: 0; }
 :root[data-theme="light"] .icon-sun { display: none; }
 :root[data-theme="light"] .icon-moon { display: block; }
 @media (max-width: 760px) {
-  .bar { flex-wrap: wrap; }
-  .brand b { font-size: 26px; }
+  /* Phones: a compact two-row header, fixed so it can fold without moving the page.
+     The nav row folds away while scrolling down and returns on any scroll up (ledger.js toggles .tuck). */
+  .site-header { position: fixed; top: 0; left: 0; right: 0; }
+  body { padding-top: var(--head-h, 96px); }
+  .bar { flex-wrap: wrap; gap: 0 12px; min-height: 0; padding-block: 6px 0; }
+  .brand b { font-size: 24px; }
   .tools { order: 2; margin-left: auto; }
-  .nav { order: 3; width: calc(100% + 16px); margin: 0 -8px; overflow-x: auto; }
+  .tool { width: 40px; height: 40px; }
+  .nav { order: 3; display: grid; grid-template-rows: 1fr; width: calc(100% + 16px); margin: 2px -8px 0; transition: grid-template-rows 0.22s ease, opacity 0.18s ease; }
+  .nav ul { min-height: 0; overflow: hidden; justify-content: space-between; }
+  .nav a { min-height: 40px; padding: 0 8px; }
+  .site-header.tuck .nav { grid-template-rows: 0fr; opacity: 0; }
 }
 @media (max-width: 420px) { .brand span { display: none; } }
 

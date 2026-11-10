@@ -15,9 +15,14 @@
   }
   if (toggle) toggle.addEventListener("click", function () {
     var next = mode() === "light" ? "dark" : "light";
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("theme", next); } catch (e) {}
-    syncToggle();
+    var apply = function () {
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      syncToggle();
+    };
+    /* Crossfade the whole page where the browser supports view transitions; instant otherwise. */
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (document.startViewTransition && !still) document.startViewTransition(apply); else apply();
   });
   syncToggle();
 
@@ -161,13 +166,17 @@
   var prose = document.querySelector(".prose");
   var tocLinks = tocWrap ? Array.prototype.slice.call(tocWrap.querySelectorAll("nav a[href^='#']")) : [];
   var heads = tocLinks.map(function (a) { return document.getElementById(decodeURIComponent(a.getAttribute("href").slice(1))); });
-  var bar = $("progress-bar"), label = $("progress-label"), line = $("read-line"), toTop = $("to-top");
+  var bar = $("progress-bar"), label = $("progress-label"), line = $("read-line"), toTop = $("to-top"), left = $("read-left");
+  var mins = prose ? +prose.getAttribute("data-read-min") || 0 : 0;
+  function timeLeft(pct) { if (pct >= 98) return "Done"; return Math.max(1, Math.ceil(mins * (1 - pct / 100))) + " min left"; }
   function onScroll() {
     if (!prose) return;
     var r = prose.getBoundingClientRect(), total = Math.max(1, r.height - window.innerHeight * 0.5);
     var pct = Math.max(0, Math.min(100, Math.round(((window.innerHeight * 0.25 - r.top) / total) * 100)));
     if (bar) bar.style.width = pct + "%";
-    if (label) label.textContent = pct + "% read";
+    var tl = mins ? timeLeft(pct) : "";
+    if (label) label.innerHTML = "<span>" + pct + "% read</span>" + (tl ? "<span>" + tl + "</span>" : "");
+    if (left && tl) { left.textContent = tl; left.classList.toggle("done", pct >= 98); }
     if (line) line.style.transform = "scaleX(" + pct / 100 + ")";
     if (toTop) toTop.hidden = window.scrollY < window.innerHeight * 1.5;
     if (!tocWrap) return;
@@ -175,7 +184,7 @@
     heads.forEach(function (h, i) { if (h && h.getBoundingClientRect().top < 140) active = i; });
     tocLinks.forEach(function (a, i) { a.classList.toggle("active", i === active); });
   }
-  if (prose && (tocWrap || line || toTop)) { window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll); onScroll(); }
+  if (prose && (tocWrap || line || toTop || left)) { window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll); onScroll(); }
   if (toTop) toTop.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     var t = document.querySelector(".post-title"); if (t) { t.setAttribute("tabindex", "-1"); t.focus({ preventScroll: true }); }

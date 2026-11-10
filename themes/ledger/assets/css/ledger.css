@@ -71,9 +71,13 @@ p.label, h2.label, h3.label { margin: 0; }
 .tool { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--body); cursor: pointer; }
 .tool:hover { color: var(--fg); border-color: var(--line-strong); background: var(--panel); }
 .tool svg { width: 18px; height: 18px; }
-.icon-moon { display: none; }
-:root[data-theme="light"] .icon-sun { display: none; }
-:root[data-theme="light"] .icon-moon { display: block; }
+/* Theme toggle: sun and moon sit on top of each other and swap with a turn */
+#theme-toggle { position: relative; overflow: hidden; }
+#theme-toggle svg { position: absolute; top: 50%; left: 50%; margin: -9px 0 0 -9px; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s ease; }
+.icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.4); }
+:root[data-theme="light"] .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.4); }
+:root[data-theme="light"] .icon-moon { opacity: 1; transform: none; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.28s; animation-timing-function: ease; }
 @media (max-width: 760px) {
   /* Phones: a compact two-row header, fixed so it can fold without moving the page.
      The nav row folds away while scrolling down and returns on any scroll up (ledger.js toggles .tuck). */
@@ -376,7 +380,7 @@ html.lb-open { overflow: hidden; }
 .toc nav > ul > li > a.active::before { color: var(--accent); }
 .progress { margin-top: 14px; height: 3px; border-radius: 2px; background: var(--line); overflow: hidden; }
 .progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width 150ms linear; }
-.progress-label { margin-top: 8px; font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.progress-label { display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 @media (min-width: 1100px) { .toc { position: sticky; top: 88px; max-height: calc(100vh - 120px); overflow-y: auto; } }
 @media (max-width: 1099px) {
   .toc-toggle { min-height: 52px; padding: 0 16px; cursor: pointer; }
@@ -466,3 +470,13 @@ html.lb-open { overflow: hidden; }
 .to-top[hidden] { display: none; }
 .to-top:hover { color: var(--accent); border-color: var(--accent-line); }
 .to-top svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Time left: shown in the header wherever the sidebar contents (with its own label) isn't */
+.read-left { margin-left: 8px; font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.read-left:empty { display: none; }
+.read-left.done { color: var(--ok); }
+@media (min-width: 1100px) { body:has(.post-layout:not(.no-toc)) .read-left { display: none; } }
+@media (max-width: 760px) {
+  .read-left { order: 2; margin-left: auto; font-size: 11.5px; }
+  .read-left:not(:empty) + .tools { margin-left: 8px; }
+}

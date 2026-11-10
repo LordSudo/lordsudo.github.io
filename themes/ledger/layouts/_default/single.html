@@ -21,7 +21,7 @@
         <span class="tags">{{ range .Params.tags }}<a class="tag {{ partial "tag-colour.html" . }}" href="{{ (printf "tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}</span>
       </div>
       {{ partial "series.html" . }}
-      <div class="prose{{ if $isPost }} dropcap{{ end }}">
+      <div class="prose{{ if $isPost }} dropcap{{ end }}" data-read-min="{{ .ReadingTime }}">
         {{ .Content }}
       </div>
       {{- if or $isLog $isPost }}

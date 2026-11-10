@@ -11,6 +11,9 @@
         {{- end }}
       </ul>
     </nav>
+    {{- if and .IsPage (in (slice "posts" "log") .Section) }}
+    <span class="read-left" id="read-left" aria-hidden="true"></span>
+    {{- end }}
     <div class="tools">
       <button class="tool" type="button" id="search-open" aria-label="Search the ledger">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5A7 7 0 113 10a7 7 0 0114 0z"></path></svg>

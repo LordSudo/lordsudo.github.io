@@ -1,0 +1,17 @@
+{{- /* Series details for a page: dict with name, at (this page's part number), total, parts (ordered).
+       Front matter:  series: "Any Name You Like"   part: 2 (optional)
+       If every post in the series has `part:`, that sets the order and numbers; otherwise publish dates do. */ -}}
+{{- $out := dict -}}
+{{- with .Params.series -}}
+  {{- $name := . -}}
+  {{- $all := where site.RegularPages "Params.series" $name -}}
+  {{- $numbered := where $all "Params.part" "!=" nil -}}
+  {{- $parts := $all.ByDate -}}
+  {{- if and (gt (len $numbered) 0) (eq (len $numbered) (len $all)) -}}{{- $parts = sort $all "Params.part" -}}{{- end -}}
+  {{- $at := 0 -}}
+  {{- range $i, $p := $parts -}}
+    {{- if eq $p.RelPermalink $.RelPermalink -}}{{- $at = $p.Params.part | default (add $i 1) -}}{{- end -}}
+  {{- end -}}
+  {{- $out = dict "name" $name "at" $at "total" (len $all) "parts" $parts -}}
+{{- end -}}
+{{- return $out -}}

@@ -1,4 +1,0 @@
-{{- $ga := site.Config.Services.GoogleAnalytics.ID -}}
-{{- if and (not hugo.IsServer) $ga -}}
-  {{ template "_internal/google_analytics.html" . }}
-{{- end -}}

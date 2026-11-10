@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="wrap hero dead">
+  <div>
+    <p class="label">Error 404</p>
+    <h1>Dead<span>end</span></h1>
+    <p class="intro">This corridor doesn’t lead anywhere. The page may have moved when the weekly logs got their own section, or it never existed.</p>
+    <div class="socials">
+      <button type="button" class="dead-btn" data-open-search>Search the ledger</button>
+      <a href="{{ "posts/" | relURL }}">All entries</a>
+      <a href="{{ "log/" | relURL }}">The log</a>
+    </div>
+  </div>
+  <figure class="maze-card">
+    <canvas id="maze" data-mode="deadend" role="img" aria-label="A labyrinth with no exit, searched cell by cell"></canvas>
+    <figcaption class="maze-foot">
+      <span id="maze-status">labyrinth <b>#—</b></span>
+      <button class="maze-btn" type="button" id="maze-new">Try another</button>
+    </figcaption>
+  </figure>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+{{- $maze := resources.Get "js/maze.js" | minify | fingerprint }}
+<script src="{{ $maze.RelPermalink }}" integrity="{{ $maze.Data.Integrity }}" defer></script>
+{{ end }}

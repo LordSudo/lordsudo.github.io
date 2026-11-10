@@ -1,0 +1,20 @@
+{{- /* Search index: entries, logs and tools, with the full article text in "c" so search can match the body.
+       Loaded by the search dialog on first open, never on page load. */ -}}
+{{- $out := slice -}}
+{{- range (where site.RegularPages "Section" "in" (slice "posts" "log")).ByDate.Reverse -}}
+  {{- $k := "" -}}
+  {{- if eq .Section "posts" -}}{{- $k = printf "No.%03d" (partial "entry-number.html" .) -}}{{- else -}}{{- $k = printf "W%v" .Params.week -}}{{- end -}}
+  {{- $out = $out | append (dict
+      "t" .Title
+      "u" .RelPermalink
+      "k" $k
+      "d" (.Date.Format "Jan 02, 2006")
+      "g" (.Params.tags | default slice)
+      "x" (partial "dek.html" . | default (.Summary | plainify | htmlUnescape | truncate 160))
+      "c" (.Plain | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace)
+    ) -}}
+{{- end -}}
+{{- range site.Data.tools -}}
+  {{- $out = $out | append (dict "t" .title "u" (.url | relURL) "k" "tool" "d" "Arsenal" "g" (.tags | default slice) "x" .description) -}}
+{{- end -}}
+{{- $out | jsonify -}}

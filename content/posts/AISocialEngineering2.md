@@ -6,6 +6,7 @@ tags: ["Social Engineering", "AI"]
 image: "/thumbnails/aisocialengineering1.png"
 description: "Why people feel suspicious but comply anyway - cognitive dissonance, rationalization, and the mechanisms that override intuition"
 series: "Human Psychology Is the Exploit"
+part: 2
 ---
 
 > *This is Part 2 of a three-part series on the psychology of social engineering. [Part 1](https://blog.lordsudo.com/posts/aisocialengineering1/) explored the six psychological triggers that make manipulation work at a neurological level. This part examines what happens when people feel suspicious but comply anyway.*

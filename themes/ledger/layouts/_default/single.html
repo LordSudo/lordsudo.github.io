@@ -1,0 +1,59 @@
+{{ define "main" }}
+{{- $isLog := eq .Section "log" }}
+{{- $isPost := eq .Section "posts" }}
+{{- $no := 0 }}{{ if $isPost }}{{ $no = partial "entry-number.html" . }}{{ end }}
+{{- $sections := len (findRE `<h2[ >]` .Content) }}
+{{- $hasToc := and (ge (len (findRE `<li>` .TableOfContents)) 2) (ne .Params.toc false) }}
+<article class="wrap">
+  <div class="post-layout{{ if not $hasToc }} no-toc{{ end }}">
+    <div class="post-main">
+      <p class="stamp">
+        {{- if $isLog }}<a href="{{ "log/" | relURL }}">Log</a><span>/</span><span class="no-badge">Week {{ .Params.week }}</span>
+        {{- else if $isPost }}<a href="{{ "posts/" | relURL }}">Entries</a><span>/</span><span class="no-badge">No. {{ printf "%03d" $no }}</span>
+        {{- end }}
+        {{- if not .Date.IsZero }}<span>Filed {{ .Date.Format "Jan 02, 2006" }}</span>{{ end -}}
+      </p>
+      <h1 class="post-title">{{ .Title }}</h1>
+      {{- with .Description }}<p class="post-dek">{{ . }}</p>{{ end }}
+      <div class="post-meta">
+        <span>{{ lang.FormatNumber 0 .WordCount }} words</span><span>/</span><span>{{ .ReadingTime }} min read</span>
+        <span class="grow"></span>
+        <span class="tags">{{ range .Params.tags }}<a class="tag {{ partial "tag-colour.html" . }}" href="{{ (printf "tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}</span>
+      </div>
+      {{ partial "series.html" . }}
+      <div class="prose{{ if $isPost }} dropcap{{ end }}">
+        {{ .Content }}
+      </div>
+      {{- if or $isLog $isPost }}
+      <p class="end-mark">{{ if $isLog }}End of week {{ .Params.week }}{{ else }}End of entry No. {{ printf "%03d" $no }}{{ end }}</p>
+      {{ partial "share.html" . }}
+      {{- end }}
+    </div>
+    {{- if $hasToc }}
+    <nav class="toc" id="toc-wrap" aria-label="On this page">
+      <button type="button" class="toc-toggle" id="toc-toggle" aria-expanded="false" aria-controls="toc-body">
+        <span class="label">On this page</span><span class="toc-n">{{ $sections }} section{{ if ne $sections 1 }}s{{ end }}</span>
+      </button>
+      <div class="toc-body" id="toc-body">
+        {{ .TableOfContents }}
+        <div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
+        <div class="progress-label" id="progress-label">0% read</div>
+      </div>
+    </nav>
+    {{- end }}
+  </div>
+
+  {{- if or $isLog $isPost }}
+  {{- $pages := .CurrentSection.RegularPages.ByDate }}
+  {{- $i := -1 }}
+  {{- range $k, $p := $pages }}{{ if eq $p.RelPermalink $.RelPermalink }}{{ $i = $k }}{{ end }}{{ end }}
+  <nav class="post-nav" aria-label="More entries">
+    {{- if gt $i 0 }}{{ with index $pages (sub $i 1) }}<a href="{{ .RelPermalink }}"><small>← Previous</small><span>{{ .Title }}</span></a>{{ end }}{{ else }}<span></span>{{ end }}
+    {{- if and (ge $i 0) (lt (add $i 1) (len $pages)) }}{{ with index $pages (add $i 1) }}<a class="next" href="{{ .RelPermalink }}"><small>Next →</small><span>{{ .Title }}</span></a>{{ end }}{{ end }}
+  </nav>
+  {{- end }}
+  <button type="button" class="to-top" id="to-top" aria-label="Back to top" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+</article>
+{{ end }}

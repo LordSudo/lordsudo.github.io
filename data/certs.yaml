@@ -1,0 +1,15 @@
+# #certs on the About page, in display order (three per row, colours alternate automatically).
+- { short: CPTS, name: "Certified Penetration Testing Specialist", issuer: "Hack The Box" }
+- { short: CWES, name: "Certified Web Exploitation Specialist", issuer: "Hack The Box" }
+- { short: PNPT, name: "Practical Network Penetration Tester", issuer: "TCM Security" }
+- { short: CRTA, name: "Certified Red Team Analyst", issuer: "CyberWarfare Labs" }
+- { short: eJPT, name: "Junior Penetration Tester", issuer: "INE" }
+- { short: PAM, name: "CyberArk Certified Defender: PAM", issuer: "CyberArk" }
+- { short: ISL, name: "Identity Security Leader", issuer: "SailPoint" }
+- { short: CJCA, name: "Certified Junior Cybersecurity Associate", issuer: "Hack The Box" }
+- { short: CNSP, name: "Certified Network Security Practitioner", issuer: "The SecOps Group" }
+- { short: CBTP, name: "Certified Blue Team Practitioner", issuer: "The SecOps Group" }
+- { short: CSEDP, name: "Certified Social Engineering Defense Practitioner", issuer: "The SecOps Group" }
+- { short: CASA, name: "Certified API Security Analyst", issuer: "APIsec University" }
+- { short: ACP, name: "APIsec Certified Practitioner", issuer: "APIsec University" }
+- { short: ICCA, name: "INE Certified Cloud Associate", issuer: "INE" }

@@ -1,0 +1,40 @@
+{{ define "main" }}
+{{- $logs := .RegularPages.ByDate.Reverse }}
+{{- $latest := index $logs 0 }}
+{{- $year := $latest.Date.Year }}
+{{- $thisYear := where $logs "Date.Year" $year }}
+<div class="wrap">
+  <div class="page-head">
+    <div>
+      <p class="label">Weekly</p>
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Description | default "What I worked on, what broke, and what’s next. One entry a week." }}</p>
+    </div>
+    <div class="count"><b>{{ len $logs }}</b>weeks logged</div>
+  </div>
+
+  <section class="weeks" aria-labelledby="weeks-h">
+    <div class="weeks-head">
+      <h2 class="label" id="weeks-h">{{ $year }}, week by week</h2>
+      <span class="weeks-key"><i></i>{{ len $thisYear }} of 53 weeks logged</span>
+    </div>
+    <div class="week-grid">
+      {{- range seq 53 }}
+      {{- $w := . }}
+      {{- $hit := where $thisYear "Params.week" $w }}
+      {{- with $hit }}{{ with index . 0 }}<a class="wk here" href="{{ .RelPermalink }}" aria-label="Week {{ $w }}">{{ $w }}</a>{{ end }}
+      {{- else }}<span class="wk" aria-label="Week {{ $w }}, no entry">{{ $w }}</span>{{ end }}
+      {{- end }}
+    </div>
+  </section>
+
+  <div class="sec-head"><h2>All weeks</h2></div>
+  {{- $pag := .Paginate $logs }}
+  <ol class="entries">
+    {{- range $pag.Pages }}
+    {{ partial "entry-row.html" . }}
+    {{- end }}
+  </ol>
+  {{ partial "pager.html" $pag }}
+</div>
+{{ end }}

@@ -5,6 +5,8 @@ draft: false
 tags: ["Identity Security"]
 image: "/thumbnails/identity3.png"
 description: "Part 2 was about building it right. Part 3 is what it looks like from the other side of the call."
+series: "Identity Security"
+part: 3
 ---
 
 [Part 2](https://blog.lordsudo.com/posts/whatgoodlookslike/) ended on a question: what would have stopped the call M&S got. Fair question for a defender. Now sit on the other side of it for a minute, because that's where the honest answer actually lives.

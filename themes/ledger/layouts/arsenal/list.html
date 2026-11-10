@@ -1,0 +1,30 @@
+{{ define "main" }}
+{{- $tools := site.Data.tools | default slice }}
+<div class="wrap">
+  <div class="page-head">
+    <div>
+      <p class="label">Instruments</p>
+      <h1>{{ .Title }}</h1>
+      {{- with .Description }}<p>{{ . }}</p>{{ end }}
+    </div>
+    <div class="count"><b>{{ len $tools }}</b>tool{{ if ne (len $tools) 1 }}s{{ end }}</div>
+  </div>
+  <div class="tools-grid">
+    {{- range $i, $t := sort $tools "date" "desc" }}
+    <a class="instrument" href="{{ $t.url | relURL }}" target="_blank" rel="noopener">
+      <div class="top"><span>{{ (time $t.date).Format "Jan 02, 2006" }}{{ with $t.kind }} · {{ . }}{{ end }}</span><span>Open ↗</span></div>
+      {{- if and $t.domains $t.nodes }}
+      <svg class="graph" viewBox="0 0 320 120" aria-hidden="true" data-domains="{{ $t.domains }}" data-nodes="{{ $t.nodes }}" data-seed="{{ add 4217 (mul $i 4813) }}"></svg>
+      {{- end }}
+      <h2>{{ $t.title }}</h2>
+      <p>{{ $t.description }}</p>
+      <div class="spec">
+        {{- with $t.domains }}<div><b>{{ . }}</b>domains</div>{{ end }}
+        {{- with $t.nodes }}<div><b>{{ . }}</b>nodes</div>{{ end }}
+        {{- with $t.tags }}<div class="tool-tags">{{ range . }}<span class="tag">{{ . }}</span>{{ end }}</div>{{ end }}
+      </div>
+    </a>
+    {{- end }}
+  </div>
+</div>
+{{ end }}

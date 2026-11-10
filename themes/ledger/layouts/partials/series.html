@@ -1,0 +1,17 @@
+{{- /* Series panel under a post's meta line. Order and numbering come from partials/series-info.html. */ -}}
+{{- $s := partial "series-info.html" . }}
+{{- if and $s.name (gt $s.total 1) }}
+<aside class="series" aria-label="Series: {{ $s.name }}">
+  <p class="series-head"><span class="label">Series</span><b>{{ $s.name }}</b><span class="series-pos">Part {{ $s.at }} of {{ $s.total }}</span></p>
+  <ol>
+    {{- range $i, $p := $s.parts }}
+    {{- $here := eq $p.RelPermalink $.RelPermalink }}
+    <li{{ if $here }} class="here"{{ end }}>
+      <span class="k">{{ printf "%02d" (int ($p.Params.part | default (add $i 1))) }}</span>
+      {{- if $here }}<span>{{ $p.Title }}</span><em>You’re reading this</em>
+      {{- else }}<a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>{{ end }}
+    </li>
+    {{- end }}
+  </ol>
+</aside>
+{{- end }}

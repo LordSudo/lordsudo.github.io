@@ -1,0 +1,13 @@
+{{- /* Entry number: position of the post in the "posts" section, oldest = 1.
+       Drafts are excluded at build time, so numbers stay contiguous on the live site.
+       Set `entry: 12` in front matter to pin a number by hand. */ -}}
+{{- $n := 0 -}}
+{{- with .Params.entry -}}
+  {{- $n = int . -}}
+{{- else -}}
+  {{- $all := (where site.RegularPages "Section" "posts").ByDate -}}
+  {{- range $i, $p := $all -}}
+    {{- if eq $p.RelPermalink $.RelPermalink -}}{{- $n = add $i 1 -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $n -}}

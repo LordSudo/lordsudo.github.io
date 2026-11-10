@@ -1,7 +1,7 @@
-baseURL = "https://lordsudo.github.io/"
+baseURL = "https://blog.lordsudo.com/"
 languageCode = "en-us"
 title = "Lord Sudo | Decrypting the labyrinth"
-theme = "mana"
+theme = "ledger"
 
 googleAnalytics = "G-PKHW8DHTY4"
 
@@ -11,6 +11,13 @@ googleAnalytics = "G-PKHW8DHTY4"
   author = "Lord Sudo"
   favicon = "/favicon/logo-transparent/favicon.ico"
   heroTitleLine1 = "Lord Sudo"
+  tagline = "Decrypting the labyrinth"
+  heroEyebrow = "Decrypting the labyrinth"
+  heroIntro = [
+    "Red teamer, CTF tactician and challenge author.",
+    "*This is not a blog.*",
+    "*It is a ledger* of engagements, exploits and the lessons in between.",
+  ]
 
      [params.customCSS]
     customCSS = ["css/custom.css"]
@@ -26,14 +33,14 @@ googleAnalytics = "G-PKHW8DHTY4"
   tag = "tags"
 
 [[menu.main]]
-  name = "Home"
-  url = "/"
-  weight = 10
-
-[[menu.main]]
-  name = "Posts"
+  name = "Entries"
   url = "/posts/"
   weight = 20
+
+[[menu.main]]
+  name = "Log"
+  url = "/log/"
+  weight = 22
 
 [[menu.main]]
   name = "Arsenal"
@@ -58,7 +65,7 @@ googleAnalytics = "G-PKHW8DHTY4"
 
 
 [pagination]
-  pageSize = 5  # Number of posts per page
+  pagerSize = 10  # Entries per page
 
 [markup]
   [markup.goldmark]
@@ -71,8 +78,8 @@ googleAnalytics = "G-PKHW8DHTY4"
         block = true
         title = true
     [markup.tableOfContents]        
-      startLevel = 1
-      endLevel = 6
+      startLevel = 2
+      endLevel = 3
       ordered = false
     [markup.highlight]
       codeFences = true
@@ -82,16 +89,17 @@ googleAnalytics = "G-PKHW8DHTY4"
 
 # Social media links
 [params.social]
-    github = "https://github.com/yourusername"
-    linkedin = "https://www.linkedin.com"
+    # github   = ""   # add your profile URL to show the icon
+    # linkedin = ""   # add your profile URL to show the icon
     email = "mailto:info@lordsudo.com"
-    twitter  = "https://twitter.com/l0rd5ud0"
+    x        = "https://x.com/l0rd5ud0"
     discord  = "https://discord.com/l0rd5ud0"
 
 
 # Output formats for search index
 [outputs]
-  home = ["HTML", "JSON"]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
 
 # Sitemap configuration for SEO
 [sitemap]
@@ -107,5 +115,3 @@ googleAnalytics = "G-PKHW8DHTY4"
 [privacy.googleAnalytics]
   anonymizeIP = true
   respectDoNotTrack = true
-
-

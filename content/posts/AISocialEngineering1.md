@@ -6,6 +6,7 @@ tags: ["Social Engineering", "AI"]
 image: "/thumbnails/aisocialengineering1.png"
 description: "Understanding the neurological and evolutionary mechanisms that make humans predictable targets"
 series: "Human Psychology Is the Exploit"
+part: 1
 ---
 
 The technology gets all the attention. Deepfakes. Voice cloning. AI-generated phishing emails. We talk about the tools, the sophistication, the frightening realism.

@@ -5,6 +5,8 @@ draft: false
 tags: ["Identity Security"]
 image: "/thumbnails/identity2.png"
 description: "Part 1 asked why identity is the whole game. Part 2 is about what a program actually looks like when it's played well."
+series: "Identity Security"
+part: 2
 ---
 
 At the end of the [last post](https://blog.lordsudo.com/posts/howdoyouknowitsyou/), I said the M&S breach wasn't a story about a company that got unlucky, it was a description of an attack surface every organization is carrying. That raises the obvious next question: what does it actually look like to carry it well?

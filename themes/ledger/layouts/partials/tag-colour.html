@@ -1,0 +1,2 @@
+{{- /* Stable colour for a tag: t0 violet, t1 amber, t2 green. Same tag name = same colour everywhere. */ -}}
+{{- return printf "t%d" (mod (hash.FNV32a (lower .)) 3) -}}

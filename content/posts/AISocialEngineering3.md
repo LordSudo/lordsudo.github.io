@@ -6,6 +6,7 @@ tags: ["Social Engineering", "AI"]
 image: "/thumbnails/aisocialengineering1.png"
 description: "Why knowing about attacks doesn't make you immune - metacognitive blindness, confidence traps, and what actually protects against manipulation"
 series: "Human Psychology Is the Exploit"
+part: 3
 ---
 
 > *This is Part 3 of a three-part series on the psychology of social engineering. [Part 1](https://blog.lordsudo.com/posts/aisocialengineering1/) explored the six psychological triggers. [Part 2](https://blog.lordsudo.com/posts/aisocialengineering2/) examined why people comply when something feels suspicious. This final part addresses the uncomfortable truth about security awareness itself.*

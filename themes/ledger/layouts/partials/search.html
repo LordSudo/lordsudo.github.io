@@ -1,0 +1,9 @@
+<dialog class="palette" id="palette" aria-label="Search the ledger" data-index="{{ "index.json" | relURL }}">
+  <div class="pal-bar">
+    <span aria-hidden="true">$</span>
+    <label for="q" class="sr-only">Search entries, logs and tags</label>
+    <input id="q" type="search" placeholder="grep the ledger…" autocomplete="off" spellcheck="false">
+    <button type="button" id="search-close">Esc</button>
+  </div>
+  <ul class="results" id="results"></ul>
+</dialog>

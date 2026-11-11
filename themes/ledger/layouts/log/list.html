@@ -21,8 +21,9 @@
     <div class="week-grid">
       {{- range seq 53 }}
       {{- $w := . }}
-      {{- $hit := where $thisYear "Params.week" $w }}
-      {{- with $hit }}{{ with index . 0 }}<a class="wk here" href="{{ .RelPermalink }}" aria-label="Week {{ $w }}">{{ $w }}</a>{{ end }}
+      {{- $hit := false }}
+      {{- range $thisYear }}{{ if and (not $hit) (eq (partial "week-no.html" .) $w) }}{{ $hit = . }}{{ end }}{{ end }}
+      {{- with $hit }}<a class="wk here" href="{{ .RelPermalink }}" aria-label="Week {{ $w }}">{{ $w }}</a>
       {{- else }}<span class="wk" aria-label="Week {{ $w }}, no entry">{{ $w }}</span>{{ end }}
       {{- end }}
     </div>

@@ -3,13 +3,13 @@
 <li>
   <a class="entry" href="{{ .RelPermalink }}">
     <span class="no">
-      {{- if $isLog }}Week<b>{{ .Params.week }}</b>
+      {{- if $isLog }}Week<b>{{ partial "week-no.html" . }}</b>
       {{- else if eq .Section "posts" }}No.<b>{{ printf "%03d" (partial "entry-number.html" .) }}</b>
       {{- else }}&nbsp;{{ end -}}
     </span>
     <span class="thumb{{ if not $img }} week{{ end }}">
       {{- with $img }}<img src="{{ . }}" alt="" loading="lazy" decoding="async" onerror="this.remove()">
-      {{- else }}<span>{{ if $isLog }}W{{ $.Params.week }}{{ else }}§{{ end }}</span>{{ end -}}
+      {{- else }}<span>{{ if $isLog }}W{{ partial "week-no.html" $ }}{{ else }}§{{ end }}</span>{{ end -}}
     </span>
     <span class="e-main">
       {{- $s := partial "series-info.html" . }}

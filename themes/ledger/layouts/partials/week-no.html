@@ -1,0 +1,6 @@
+{{- /* A log's week number: `week:` from front matter, else the number in the file name (week-43.md → 43). */ -}}
+{{- $n := 0 -}}
+{{- with .Params.week -}}{{- $n = int . -}}{{- else -}}
+  {{- with .File -}}{{- with replaceRE `\D` "" .ContentBaseName -}}{{- $n = int . -}}{{- end -}}{{- end -}}
+{{- end -}}
+{{- return $n -}}

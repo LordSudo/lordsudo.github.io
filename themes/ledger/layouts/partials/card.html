@@ -23,7 +23,7 @@
 {{- else if eq $p.Section "posts" -}}
   {{- $label = printf "Entry No. %03d" (partial "entry-number.html" $p) -}}{{- $sub = $p.Date.Format "Jan 02, 2006" -}}
 {{- else if eq $p.Section "log" -}}
-  {{- $label = printf "Log · Week %v" $p.Params.week -}}{{- $tone = "t2" -}}{{- $sub = $p.Date.Format "Jan 02, 2006" -}}
+  {{- $label = printf "Log · Week %v" (partial "week-no.html" $p) -}}{{- $tone = "t2" -}}{{- $sub = $p.Date.Format "Jan 02, 2006" -}}
 {{- else -}}
   {{- $label = "Lord Sudo" -}}{{- $sub = $p.Description | default site.Params.tagline -}}
 {{- end -}}

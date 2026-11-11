@@ -3,7 +3,7 @@
 {{- $out := slice -}}
 {{- range (where site.RegularPages "Section" "in" (slice "posts" "log")).ByDate.Reverse -}}
   {{- $k := "" -}}
-  {{- if eq .Section "posts" -}}{{- $k = printf "No.%03d" (partial "entry-number.html" .) -}}{{- else -}}{{- $k = printf "W%v" .Params.week -}}{{- end -}}
+  {{- if eq .Section "posts" -}}{{- $k = printf "No.%03d" (partial "entry-number.html" .) -}}{{- else -}}{{- $k = printf "W%v" (partial "week-no.html" .) -}}{{- end -}}
   {{- $out = $out | append (dict
       "t" .Title
       "u" .RelPermalink
